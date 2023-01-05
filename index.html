@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wenfs’s Blog</title>
+    <!--网页标题左侧显示-->
+    <link rel="icon" href="/script/sys/imgs/favicon.ico" type="image/x-icon"/>
+    <!--收藏夹显示图标-->
+    <link rel="shortcut icon" href="/script/sys/imgs/favicon.ico" type="image/x-icon"/>
+    <!-- 解除其他平台的防盗链 -->
+    <meta name="referrer" content="never">
+    <meta name="description" content="wenfs blog">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="description" content="Description">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<!--白天黑暗主题切换
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">-->
+    <!--vue主题-->
+    <link rel="stylesheet" href="script/css/vue.min.css">
+    <!--fontawesome图标-->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!--弹框样式-->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.css" type='text/css'  media='all'/>
+	<!--LaTex数学公式-->
+	<link href="https://cdn.bootcss.com/KaTeX/0.10.0/katex.min.css" rel="stylesheet">
+    <!--自己的样式-->
+    <link rel="stylesheet" href="script/css/content.min.css">
+</head>
+<!-- class="close" 自动隐藏侧边栏 -->
+<body class="close">
+<!-- 定义加载时候的动作 -->
+<div id="app">🏃‍🏃‍🏃‍💨加载中
+    <dot class=" dot">...</dot>
+</div>
+<script>
+    window.$docsify = {
+        name: ' <span style = "font-family: var(--wenfsblog-logo-font-family);color: var(--theme-color);">Wenfs’s Blog</span>',  // 左上角名称
+        nameLink: '/', // 点击文档标题后跳转的链接地址
+		//repo: 'https://gitee.com/wefashe/mydocs.git', // 右上角图标调转的图标
+        auto2top: true,  // 切换页面后是否自动跳转到页面顶部
+		themeColor: '#25798A',
+        coverpage: 'script/sys/docs/_coverpage.md', // 启用封面  默认加载_coverpage.md
+        executeScript: true,
+        //loadSidebar: 'script/sys/docs/_sidebar.md',  // 开启侧边栏，默认加载_sidebar.md, 只能显示固定内容
+        loadNavbar: 'script/sys/docs/_navbar.md', //启用导航栏，默认加载_navbar.md
+		alias: {
+			//'/.*/_sidebar.md': '/script/sys/docs/_sidebar.md',//防止意外回退
+			'/.*/_navbar.md': '/script/sys/docs/_navbar.md',
+		},
+        mergeNavbar: true, // 小屏设备下合并导航栏到侧边栏
+        maxLevel: 4,
+        onlyCover: true,
+        mergeNavbar: true,
+        //notFoundPage: 'script/sys/docs/_404.md', //在找不到指定页面时加载_404.md:
+        topMargin: 90,
+        maxLevel: 4, // 最大支持渲染的标题层级
+        subMaxLevel: 3,  // 自定义侧边栏后默认不会再生成目录，设置生成目录的最大层级，建议配置为1或者2
+		sidebarDisplayLevel: 1,
+		//relativePath: false, // 启用相对路径
+        copyCode: { // 代码复制
+            buttonText: '复制',
+            ERRORTEXT: '错误',
+            successText: '已复制'
+        },
+        count: { // 字数统计
+            countable: true,
+            fontsize: '0.9em',
+            color: 'rgb(90,90,90)',
+            language: 'chinese'
+        },
+        footer: { // 底部设置
+            copy: ' Copyright &copy;2020 - '+new Date().getFullYear()+' 💖 </span>',
+            auth: ' <strong>WENFS</strong>',
+            pre: '<hr/>',
+            style: 'text-align: center;'
+        },
+        search: {   //设置搜索
+            maxAge: 86400000, // 过期时间，单位毫秒，默认一天
+            paths: 'auto', // or 'auto'
+            placeholder: '🔍 搜索',
+            noData: '😒 找不到结果',
+			hideOtherSidebarContent: true, // 是否隐藏其他侧边栏内容
+            depth: 6,   // 搜索标题的最大程级, 1 - 6
+			//pathNamespaces: /^(\/docs\/)?/
+        },
+		darklightTheme: {
+			defaultTheme: 'light', // 默认白天模式
+			siteFont: 'Source Sans Pro,Helvetica Neue,Arial,sans-serif',
+			codeFontFamily: 'Roboto Mono, Monaco, courier, monospace',
+			bodyFontSize: '15px',
+			dark: { // 白天模式的样式
+			  background: '#191919',
+			  highlightColor: '#e96900',
+			  codeBackgroundColor: '#202020',
+			  codeTextColor: '#b4b4b4',
+			},
+			light: { // 夜间模式的样式
+			  highlightColor: '#e96900',
+			}
+		},
+      plugins: [
+        function(hook, vm) {			
+			hook.doneEach(function() {
+			// 每次路由切换时数据全部加载完成后调用
+			
+				// 折叠目录
+				$(".sidebar-nav > ul").find("li").each(function(index,node){
+					// 当前元素
+					var $node = $(node);
+					// 当前元素的下一个元素且必须是ul标签
+					var $nextNode = $node.next().filter("ul");
+					// 隐藏下一个元素
+					$nextNode.hide();
+					// 给当前元素添加点击事件
+					$node.click(function(){
+						// 当前元素的同级元素的ul元素除了下一个元素外其他同级的ul标签隐藏
+						$node.siblings("ul").not($nextNode).slideUp();
+						// 下一个元素显示隐藏切换
+						$nextNode.slideToggle();
+					});
+				});
+				
+			});
+        }
+      ],
+    };	   
+</script>
+<!--
+<script src="//cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>-->
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+<!--白天黑暗主题切换
+<script src="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>-->
+<!--emoji 插件-->
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+<!--图片缩放-->
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+<!--代码复制-->
+<script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+<!--字数统计-->
+<script src="//cdn.jsdelivr.net/npm/docsify-count/dist/countable.min.js"></script>
+<!--代码高亮-->
+<script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-bash.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-java.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-json.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-markdown.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-sql.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-yaml.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-c.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-git.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-http.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-ini.min.js"></script>
+<!--文章底部Copyright-->
+<script src="//cdn.jsdelivr.net/npm/docsify-footer-enh/dist/docsify-footer-enh.min.js"></script>
+<!--搜索功能-->
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+<!-- 弹窗样式美化-->
+<script src="//cdn.jsdelivr.net/npm/docsify-plugin-flexible-alerts"></script>
+<!-- 复制弹框提醒 -->
+<script src="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.js"></script>
+<!--返回顶部-->
+<script src="//cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/jquery.goup.min.js"></script>
+<!--离线化-->
+<script src="script/js/pwa.js"></script>
+<!--LaTex数学公式-->
+<script src="https://cdn.bootcss.com/KaTeX/0.10.0/katex.min.js"></script>
+<script>
+	// 因为$要放在jquery之后，因为$.goup要放在jquery.goup之后
+	// 页面加载完成后执行
+	$(function(){
+		// 返回顶部
+		$.goup({
+            trigger: 100,
+            bottomOffset: 32,
+            locationOffset: 32,
+            title: '返回顶部',
+			// 获取上面设置的主题颜色
+			containerColor: getComputedStyle(document.documentElement).getPropertyValue('--theme-color').trim(),
+			// 不显示title
+            titleAsText: false 
+        });
+		// 复制弹框提示信息
+		document.body.oncopy = function () {
+			swal("复制成功 🎉", "若要转载或引用请务必保留原文链接，并申明来源😊", "success");
+		};
+		// pwa离线化 功能只能工作在一些现代浏览器上，所以我们需要加个判断
+		if (typeof navigator.serviceWorker !== 'undefined') {
+			navigator.serviceWorker.register('script/js/pwa.js');
+		};
+	});
+</script>
+</body>
+</html>

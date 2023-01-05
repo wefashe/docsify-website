@@ -1,0 +1,163 @@
+/*  自定义样式 
+
+
+	范围前缀
+	nav  上面工具栏
+	section.cover 封面
+	aside.sidebar 侧边栏
+	section.content 内容
+
+
+*/
+
+
+
+/***************************************************************************************************/
+/* 加载区*/
+
+
+/* 加载字体
+@font-face {
+    font-family: GameCube;
+    src: url('/script/font/YouSheBiaoTiHei.ttf')
+}*/
+
+
+
+
+
+/***************************************************************************************************/
+/* 声明区 */
+
+
+/*声明变量*/
+:root {
+	/*logo的字体*/
+	--wenfsblog-logo-font-family: 'Lobster', cursive;
+}
+
+
+/***************************************************************************************************/
+/*全局样式区*/
+
+
+/*加载动画*/
+.dot {
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
+    overflow: hidden;
+    height: 1em;
+    line-height: 1em;
+    vertical-align: -.25em;
+}
+.dot::before {
+    display: block;
+    content: '...\A..\A.';
+    white-space: pre-wrap;
+    animation: dot 3s infinite step-start both;
+}
+@keyframes dot {
+    33% {
+        transform: translateY(-2em);
+    }
+    66% {
+        transform: translateY(-1em);
+    }
+}
+
+/*a标签去除下划线*/
+a:link {
+    text-decoration: none;
+}
+a:active {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/***************************************************************************************************/
+/*封面样式区*/
+
+
+section.cover .cover-main {
+    z-index: 100;
+}
+section.cover.has-mask .mask {
+    background-color: #fff;
+    opacity: .1!important;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}
+
+section.cover h1 .anchor span {
+    font-family: var(--wenfsblog-logo-font-family);
+    color: var(--theme-color);
+}
+
+section.cover h2 .anchor span {
+    font-family: 'Lobster', cursive;
+    font-size: 24px;
+    color: var(--theme-color);
+}
+
+section.cover .cover-main > p:last-child a .iconfont {
+    font-size: 1em;
+}
+
+/***************************************************************************************************/
+/*工具栏样式区*/
+
+
+
+/***************************************************************************************************/
+/*侧边栏样式区*/
+
+
+aside.sidebar > h1 a {
+    font-family: 'Lobster', cursive;
+}
+
+
+/***************************************************************************************************/
+/*内容样式区*/
+
+
+/*h2标题样式修改*/
+section.content h2 span {
+    display: inline-block;
+    background: var(--theme-color);
+    color: #ffffff !important;
+    padding: 10px 16px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgb(216, 216, 216);
+
+}
+
+
+section.content .markdown-section a {
+    color: rgb(66, 185, 163);
+    font-weight: 500;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

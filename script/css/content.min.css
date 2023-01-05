@@ -1,0 +1,106 @@
+main .content{
+
+}
+
+main .content a{
+	background: 0 0;
+    color: #4183c4;
+	font-weight: normal;
+	text-decoration:none;
+}
+
+main .content a:active, main .content a:hover{
+	outline: 0;
+    text-decoration: underline;
+}
+
+main .content h1 span, main .content h2 span, main .content h3 span, main .content h4 span, main .content h5 span, main .content h6 span{
+	font-weight: bold;
+}
+
+main .content pre {
+	font-family: "YaHei Consolas Hybrid",Consolas,"Meiryo UI","Malgun Gothic","Segoe UI","Trebuchet MS",Helvetica,monospace,monospace !important;
+	border: 1px solid #ddd;
+	border-radius: 5px !important;
+}
+
+main .content pre code {
+	    padding: 10px;
+}
+/*代码关键字粗体*/
+main .content pre code .keyword{
+	    font-weight: bold;
+}
+/*除注释外，其他代码添加阴影效果*/
+main .content pre code :not(.comment){
+		text-shadow: 0.05px 0.05px 0.5px;
+}
+/*代码复制按钮圆角*/
+.docsify-copy-code-button{
+	border-radius: 5px !important;
+}
+
+
+
+
+
+/*以下为书籍列表的样式--开始*/
+
+.book-cover img{
+	width:666px;
+	height:920px;
+	padding: 20px;
+	border: 5px solid #ddd;
+	box-shadow: 0 1px 6px rgba(0,0,0,.35), 0 0 5px #f9f2e9 inset;
+	border-radius: 15px; 
+}
+.book img:hover {
+	border: 5px solid #e84848;
+}
+.book-info{
+	font-family: PingFangSC-Regular,HelveticaNeue-Light,'Helvetica Neue Light','Microsoft YaHei',sans-serif,Simsun;
+}
+.book-title,.book-title a{
+	line-height: 21px;
+	font-size: 16px;
+	color: #333 !important;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	width: 222px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-weight: bold !important;
+}
+.book-author,.book-author a{
+	font-size: 13px;
+	color: #999 !important;
+	letter-spacing: 1px;
+	width: 125px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.book-summary{
+	line-height: 24px;
+	color: #666;
+	letter-spacing: .93px;
+	height: 72px;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	font-size: 13px;
+}
+.book a,.book a:active,.book a:hover,.book a:link {
+	text-decoration: none !important;
+}
+.book a:hover{
+	color: #e84848 !important;
+}
+
+/*以上为书籍列表的样式--结束*/
+
+
+
+
+
+
